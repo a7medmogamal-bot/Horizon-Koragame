@@ -1,17 +1,15 @@
 /* =========================================================
-   HORIZON KORAGAME — style.css
-   Neobrutalism + لمسات Flat / Minimalism
+   HORIZON KORAGAME — style.css (Full)
+   Neobrutalism + Flat/Minimalism touches
    Dark Mode Only • RTL • Responsive
    ========================================================= */
 
-/* ---------- Google Font ---------- */
-@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap');
 
 /* =========================================================
    1. VARIABLES
    ========================================================= */
 :root {
-  /* Colors */
   --bg:           #0a0a0a;
   --bg-elev:      #141414;
   --card:         #1a1a1a;
@@ -26,29 +24,24 @@
   --danger:       #e11d2e;
   --success:      #1db954;
 
-  /* Border / Shadow */
   --bd:           3px solid var(--border);
   --bd-thin:      2px solid var(--border);
   --shadow:       6px 6px 0 #000;
   --shadow-sm:    4px 4px 0 #000;
   --shadow-lg:    10px 10px 0 #000;
 
-  /* Radius */
   --r-sm: 8px;
   --r-md: 12px;
   --r-lg: 18px;
 
-  /* Motion */
   --t-fast: 0.15s ease;
   --t:      0.25s ease;
   --t-slow: 0.4s cubic-bezier(0.22, 1, 0.36, 1);
   --ease:   cubic-bezier(0.22, 1, 0.36, 1);
 
-  /* Sizing */
   --app-max: 520px;
   --pad:     20px;
 
-  /* Safe areas */
   --sat: env(safe-area-inset-top, 0px);
   --sab: env(safe-area-inset-bottom, 0px);
 }
@@ -97,13 +90,9 @@ input, select, textarea {
 img { max-width: 100%; display: block; }
 a { color: inherit; text-decoration: none; }
 
-/* Custom scrollbar */
 ::-webkit-scrollbar { width: 6px; height: 6px; }
 ::-webkit-scrollbar-track { background: #0a0a0a; }
-::-webkit-scrollbar-thumb {
-  background: #333;
-  border-radius: 999px;
-}
+::-webkit-scrollbar-thumb { background: #333; border-radius: 999px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
 
 /* =========================================================
@@ -202,12 +191,16 @@ body > section.screen {
   border-radius: var(--r-sm);
   font-size: 18px;
   font-weight: 900;
-  transition: transform var(--t-fast), box-shadow var(--t-fast), background var(--t-fast);
+  transition: transform var(--t-fast), box-shadow var(--t-fast), background var(--t-fast), color var(--t-fast);
 }
 .btn-icon:hover { background: var(--card-2); }
 .btn-icon:active {
   transform: translate(2px, 2px);
   box-shadow: 2px 2px 0 #000;
+}
+#btn-notifications:hover {
+  background: var(--accent);
+  color: #fff;
 }
 
 /* =========================================================
@@ -325,6 +318,32 @@ body > section.screen {
 }
 .btn-grid .btn.selected,
 .btn-grid button.selected {
+  background: var(--accent);
+  color: #fff;
+  border-color: #fff;
+}
+
+/* Standalone answer buttons */
+.btn-answer {
+  flex: 1;
+  padding: 12px 14px;
+  border: var(--bd-thin);
+  border-radius: var(--r-sm);
+  background: var(--card);
+  color: var(--text);
+  box-shadow: var(--shadow-sm);
+  font-weight: 900;
+  font-size: 14px;
+  font-family: inherit;
+  cursor: pointer;
+  transition: transform var(--t-fast), box-shadow var(--t-fast), background var(--t-fast), color var(--t-fast);
+}
+.btn-answer:hover  { background: var(--card-2); }
+.btn-answer:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 #000;
+}
+.btn-answer.selected {
   background: var(--accent);
   color: #fff;
   border-color: #fff;
@@ -492,7 +511,7 @@ select.field-input {
 }
 
 /* =========================================================
-   10. AUTH (LOGIN / USERNAME)
+   10. AUTH
    ========================================================= */
 .auth-wrap {
   display: flex;
@@ -654,7 +673,7 @@ select.field-input {
 }
 
 /* =========================================================
-   13. PLAY MENU / MODE CARDS
+   13. MODE CARDS
    ========================================================= */
 .mode-list {
   display: flex;
@@ -709,7 +728,7 @@ select.field-input {
 }
 
 /* =========================================================
-   14. SETUP (PLAYER LIST)
+   14. SETUP SCREENS
    ========================================================= */
 .setup-wrap {
   display: flex;
@@ -832,20 +851,20 @@ select.field-input {
 .scratch-card canvas {
   position: absolute;
   inset: 0;
-  width: 100%;
-  height: 100%;
+  width: 100% !important;
+  height: 100% !important;
   touch-action: none;
   cursor: crosshair;
+  border-radius: inherit;
 }
 
 /* =========================================================
-   17. QUESTIONS / OPTIONAL / VOTE
+   17. QUESTIONS / OPTIONAL / VOTE / GUESS
    ========================================================= */
 .question-wrap,
 .optional-wrap,
 .vote-wrap,
-.guess-wrap,
-.guess-label-wrap {
+.guess-wrap {
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -974,9 +993,7 @@ select.field-input {
   background: var(--accent);
   border-color: #fff;
 }
-.points-list li:nth-child(1) strong {
-  color: #fff;
-}
+.points-list li:nth-child(1) strong { color: #fff; }
 .points-list li strong {
   color: var(--accent);
   font-size: 17px;
@@ -987,7 +1004,7 @@ select.field-input {
 .points-list li:nth-child(4) { animation-delay: 0.15s; }
 
 /* =========================================================
-   21. FORMATION — DRAFT / PITCH / RESULT
+   21. FORMATION — DRAFT / LINEUP / RESULT
    ========================================================= */
 .budget-label {
   font-size: 13px;
@@ -1074,6 +1091,14 @@ select.field-input {
   letter-spacing: 3px;
 }
 
+/* Lineup */
+.lineup-wrap {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 16px;
+  animation: fade-up 0.4s var(--ease) both;
+}
 .pitch {
   display: flex;
   flex-direction: column;
@@ -1102,16 +1127,26 @@ select.field-input {
   max-width: 110px;
   aspect-ratio: 1 / 1.15;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  text-align: center;
+  padding: 6px;
   background: rgba(10, 10, 10, 0.65);
   border: 2px dashed rgba(255, 255, 255, 0.35);
   border-radius: var(--r-sm);
   font-weight: 900;
-  font-size: 13px;
-  letter-spacing: 1px;
+  font-size: 12px;
+  letter-spacing: 0.5px;
   color: rgba(255, 255, 255, 0.7);
-  transition: background var(--t-fast), border-color var(--t-fast);
+  transition: background var(--t-fast), border-color var(--t-fast), color var(--t-fast);
+  line-height: 1.2;
+}
+.slot small {
+  font-size: 11px;
+  color: #fff;
+  opacity: 0.85;
+  font-weight: 800;
 }
 .slot.filled {
   background: var(--accent);
@@ -1134,6 +1169,14 @@ select.field-input {
 }
 .team-summary strong { color: var(--accent); font-weight: 900; }
 
+/* Result */
+.result-wrap {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 20px;
+  animation: fade-up 0.4s var(--ease) both;
+}
 .result-teams {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
@@ -1158,9 +1201,13 @@ select.field-input {
   color: var(--text-muted);
   font-weight: 700;
 }
+.result-teams .team-card p strong {
+  color: var(--accent);
+  font-size: 14px;
+}
 
 /* =========================================================
-   22. ONLINE — GATE / CHOOSE / CREATE / JOIN
+   22. ONLINE GATE / CHOOSE / CREATE / JOIN
    ========================================================= */
 .gate-wrap,
 .settings-wrap {
@@ -1180,7 +1227,7 @@ select.field-input {
 }
 
 /* =========================================================
-   23. LOBBY / ROOM
+   23. LOBBY
    ========================================================= */
 .lobby-wrap {
   display: flex;
@@ -1281,19 +1328,6 @@ select.field-input {
   border-top: var(--bd-thin);
 }
 .sidebar-footer .field-input { flex: 1; }
-.sidebar-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.6);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity var(--t);
-  z-index: 90;
-}
-.sidebar-overlay.open {
-  opacity: 1;
-  pointer-events: auto;
-}
 
 /* Chat bubble */
 .chat-msg {
@@ -1353,6 +1387,7 @@ select.field-input {
   box-shadow: var(--shadow-sm);
   font-weight: 900;
   font-size: 15px;
+  letter-spacing: 0.3px;
 }
 .chat-box {
   flex: 1;
@@ -1367,32 +1402,13 @@ select.field-input {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  scroll-behavior: smooth;
 }
 .answer-controls,
 .ask-controls {
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
-}
-.answer-controls .btn-answer {
-  flex: 1;
-  padding: 12px;
-  border: var(--bd-thin);
-  border-radius: var(--r-sm);
-  background: var(--card);
-  box-shadow: var(--shadow-sm);
-  font-weight: 900;
-  font-size: 14px;
-  transition: transform var(--t-fast), box-shadow var(--t-fast), background var(--t-fast);
-}
-.answer-controls .btn-answer:hover  { background: var(--card-2); }
-.answer-controls .btn-answer:active {
-  transform: translate(2px, 2px);
-  box-shadow: 1px 1px 0 #000;
-}
-.answer-controls .btn-answer.selected {
-  background: var(--accent);
-  color: #fff;
 }
 .ask-controls .field-input { flex: 1; }
 
@@ -1405,14 +1421,10 @@ select.field-input {
 }
 
 /* =========================================================
-   26. ROOMS LIST
+   26. ROOMS LIST / FRIENDS
    ========================================================= */
 .rooms-wrap,
-.friends-wrap,
-.rankings-wrap,
-.settings-list,
-.about-wrap,
-.guide-wrap {
+.friends-wrap {
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -1487,7 +1499,7 @@ select.field-input {
   border-radius: var(--r-sm);
   box-shadow: 2px 2px 0 #000;
   font-weight: 900;
-  transition: transform var(--t-fast), box-shadow var(--t-fast);
+  transition: transform var(--t-fast), box-shadow var(--t-fast), background var(--t-fast);
 }
 .rooms-list li button:hover,
 .friends-list li button:hover { background: var(--accent-dark); }
@@ -1500,6 +1512,13 @@ select.field-input {
 /* =========================================================
    27. RANKINGS
    ========================================================= */
+.rankings-wrap {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 14px;
+  animation: fade-up 0.4s var(--ease) both;
+}
 .rank-card {
   display: flex;
   align-items: center;
@@ -1558,10 +1577,26 @@ select.field-input {
 /* =========================================================
    28. SETTINGS / ABOUT / GUIDE
    ========================================================= */
+.settings-list {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 14px;
+  animation: fade-up 0.4s var(--ease) both;
+}
 .settings-list li { width: 100%; }
 .settings-list .btn {
   justify-content: flex-start;
   text-align: right;
+}
+
+.about-wrap,
+.guide-wrap {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 14px;
+  animation: fade-up 0.4s var(--ease) both;
 }
 .about-wrap h2,
 .guide-wrap h3 {
@@ -1648,6 +1683,10 @@ select.field-input {
   letter-spacing: 2px;
   font-size: 13px;
 }
+.global-loader .loader-bar {
+  width: 260px;
+  max-width: 80vw;
+}
 
 /* =========================================================
    31. TOAST
@@ -1681,8 +1720,6 @@ select.field-input {
 /* =========================================================
    32. RESPONSIVE
    ========================================================= */
-
-/* Tablet */
 @media (min-width: 640px) {
   :root { --app-max: 620px; --pad: 28px; }
   .home-grid { grid-template-columns: repeat(4, 1fr); }
@@ -1690,7 +1727,6 @@ select.field-input {
   .logo-text { font-size: 40px; }
 }
 
-/* Desktop */
 @media (min-width: 960px) {
   :root { --app-max: 720px; --pad: 36px; }
   .auth-title { font-size: 34px; }
@@ -1698,22 +1734,20 @@ select.field-input {
   .pass-name  { font-size: 46px; }
 }
 
-/* Small phones */
 @media (max-width: 360px) {
   :root { --pad: 14px; }
   .btn { padding: 12px 16px; font-size: 14px; }
   .logo-mark { width: 90px; height: 90px; font-size: 50px; }
   .logo-text { font-size: 26px; letter-spacing: 4px; }
   .auth-title { font-size: 24px; }
+  .slot { font-size: 11px; }
 }
 
-/* Landscape phone */
 @media (max-height: 500px) and (orientation: landscape) {
   .screen { padding-top: 12px; padding-bottom: 12px; }
   .logo-mark { width: 70px; height: 70px; font-size: 40px; }
 }
 
-/* Reduce motion */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;

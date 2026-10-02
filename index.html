@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#0a0a0a" />
+  <title>Horizon Koragame</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ===================== SPLASH ===================== -->
+  <section id="screen-splash" class="screen active">
+    <div class="splash-logo">
+      <span class="logo-mark">H</span>
+      <h1 class="logo-text">HORIZON</h1>
+      <p class="logo-sub">KORAGAME</p>
+    </div>
+    <div class="splash-loader">
+      <div class="loader-bar"><div class="loader-fill"></div></div>
+      <p class="loader-label">جاري التحميل...</p>
+    </div>
+    <p class="splash-version">EST. 2026 • BETA</p>
+  </section>
+
+  <!-- ===================== LOGIN ===================== -->
+  <section id="screen-login" class="screen">
+    <header class="app-header">
+      <button class="btn-icon" id="btn-login-back" aria-label="رجوع">&#8592;</button>
+      <span class="app-header-title">HORIZON</span>
+    </header>
+    <div class="auth-wrap">
+      <h2 class="auth-title">Welcome Back</h2>
+      <p class="auth-sub">سجل دخولك لمتابعة رحلتك.</p>
+      <button class="btn btn-google" id="btn-google-signin">
+        <span class="google-icon">G</span>
+        <span>تسجيل الدخول بواسطة Google</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- ===================== USERNAME SETUP ===================== -->
+  <section id="screen-username" class="screen">
+    <header class="app-header">
+      <span class="app-header-title">إعداد الحساب</span>
+    </header>
+    <div class="auth-wrap">
+      <h2 class="auth-title">اختر اسمك</h2>
+      <p class="auth-sub">سيظهر هذا الاسم للجميع داخل اللعبة.</p>
+
+      <label class="field-label" for="input-username">Username (فريد)</label>
+      <input id="input-username" class="field-input" type="text" placeholder="username" maxlength="20" autocomplete="off" />
+      <p class="field-hint">أحرف إنجليزية وأرقام و _ فقط</p>
+
+      <label class="field-label" for="input-displayname">الاسم الظاهر</label>
+      <input id="input-displayname" class="field-input" type="text" placeholder="اسمك الظاهر" maxlength="24" autocomplete="off" />
+
+      <p class="field-hint">ID الخاص بك: <span id="user-id-preview">#000000</span> (لا يمكن تغييره)</p>
+
+      <button class="btn btn-primary" id="btn-username-confirm">تأكيد</button>
+    </div>
+  </section>
+
+  <!-- ===================== HOME ===================== -->
+  <section id="screen-home" class="screen">
+    <header class="app-header">
+      <span class="app-header-title">HORIZON</span>
+      <div class="app-header-actions">
+        <button class="btn-icon" id="btn-notifications" aria-label="الإشعارات">&#128276;</button>
+        <button class="btn-icon" id="btn-settings" aria-label="الإعدادات">&#9881;</button>
+      </div>
+    </header>
+
+    <div class="home-hero">
+      <h2 class="hero-title">PLAY NOW</h2>
+      <p class="hero-sub">اختر طورك وابدأ اللعب.</p>
+      <button class="btn btn-primary" id="btn-hero-play">ابدأ</button>
+    </div>
+
+    <div class="home-grid">
+      <button class="tile" id="tile-spy">
+        <span class="tile-icon">&#128373;</span>
+        <span class="tile-title">Spy Mode</span>
+        <span class="tile-desc">اسأل. خمّن. اكتشف الجاسوس.</span>
+      </button>
+      <button class="tile" id="tile-formation">
+        <span class="tile-icon">&#9917;</span>
+        <span class="tile-title">Formation Mode</span>
+        <span class="tile-desc">ابنِ فريق أحلامك.</span>
+      </button>
+      <button class="tile" id="tile-rooms">
+        <span class="tile-icon">&#127968;</span>
+        <span class="tile-title">Online Rooms</span>
+        <span class="tile-desc">العب مع أصدقائك.</span>
+      </button>
+      <button class="tile" id="tile-profile">
+        <span class="tile-icon">&#128100;</span>
+        <span class="tile-title">Profile</span>
+        <span class="tile-desc">إحصائياتك.</span>
+      </button>
+    </div>
+
+    <nav class="bottom-nav">
+      <button class="nav-item active" data-nav="home">Home</button>
+      <button class="nav-item" data-nav="play">Play</button>
+      <button class="nav-item" data-nav="rooms">Rooms</button>
+      <button class="nav-item" data-nav="profile">Profile</button>
+    </nav>
+  </section>
+
+  <!-- ===================== PLAY MENU ===================== -->
+  <section id="screen-play-menu" class="screen">
+    <header class="app-header">
+      <button class="btn-icon" id="btn-playmenu-back">&#8592;</button>
+      <span class="app-header-title">Choose Mode</span>
+    </header>
+    <div class="mode-list">
+      <button class="mode-card" data-mode="spy-offline">
+        <span class="mode-icon">&#128373;</span>
+        <span class="mode-title">Spy Mode</span>
+        <span class="mode-sub">اسأل وخمّن، هل تجد الجاسوس؟</span>
+      </button>
+      <button class="mode-card" data-mode="formation-offline">
+        <span class="mode-icon">&#9917;</span>
+        <span class="mode-title">Formation Mode</span>
+        <span class="mode-sub">ابنِ فريقك وتغلب على خصمك.</span>
+      </button>
+      <button class="mode-card" data-mode="guess-offline">
+        <span class="mode-icon">&#10067;</span>
+        <span class="mode-title">Guess Mode</span>
+        <span class="mode-sub">لاعب ضد لاعب.</span>
+      </button>
+      <button class="mode-card" data-mode="online">
+        <span class="mode-icon">&#127760;</span>
+        <span class="mode-title">Online</span>
+        <span class="mode-sub">العب مع أصدقائك أونلاين.</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- ===================== SPY OFFLINE: SETUP ===================== -->
+  <section id="screen-spy-setup" class="screen">
+    <header class="app-header">
+      <button class="btn-icon" id="btn-spysetup-back">&#8592;</button>
+      <span class="app-header-title">Spy Mode - Offline</span>
+    </header>
+    <div class="setup-wrap">
+      <h2 class="section-title">أسماء اللاعبين</h2>
+      <p class="section-sub">من 3 إلى 12 لاعب.</p>
+      <div class="row-input">
+        <input id="spy-player-input" class="field-input" type="text" placeholder="اسم اللاعب" maxlength="20" autocomplete="off" />
+        <button class="btn btn-primary btn-compact" id="btn-spy-add-player">إضافة</button>
+      </div>
+      <ul class="chip-list" id="spy-player-list"></ul>
+      <p class="counter" id="spy-player-counter">0 / 12</p>
+      <button class="btn btn-primary" id="btn-spysetup-next">التالي</button>
+    </div>
+  </section>
+
+  <!-- ===================== SPY OFFLINE: PASS ===================== -->
+  <section id="screen-spy-pass" class="screen">
+    <div class="pass-wrap">
+      <p class="pass-label">مرر الهاتف إلى</p>
+      <h1 class="pass-name" id="spy-pass-name">اسم اللاعب</h1>
+      <button class="btn btn-primary" id="btn-spy-show-role">اضغط لمعرفة دورك</button>
+    </div>
+  </section>
+
+  <!-- ===================== SPY OFFLINE: REVEAL ===================== -->
+  <section id="screen-spy-reveal" class="screen">
+    <div class="reveal-wrap">
+      <h2 class="section-title">دورك</h2>
+      <div class="scratch-card">
+        <div class="role-content" id="spy-role-content">جاري التحضير...</div>
+        <canvas id="spy-scratch-canvas"></canvas>
+      </div>
+      <button class="btn btn-primary" id="btn-spy-reveal-next" disabled>التالي</button>
+    </div>
+  </section>
+
+  <!-- ===================== SPY OFFLINE: QUESTIONS ===================== -->
+  <section id="screen-spy-questions" class="screen">
+    <header class="app-header">
+      <span class="app-header-title">الأسئلة</span>
+    </header>
+    <div class="question-wrap">
+      <p class="question-text" id="spy-question-text">أحمد اسأل محمد</p>
+      <button class="btn btn-primary" id="btn-spy-question-next">التالي</button>
+    </div>
+  </section>
+
+  <!-- ===================== SPY OFFLINE: OPTIONAL ===================== -->
+  <section id="screen-spy-optional" class="screen">
+    <header class="app-header">
+      <span class="app-header-title">سؤال إضافي</span>
+    </header>
+    <div class="optional-wrap">
+      <p class="optional-question">هل ترغب بسؤال أحد اللاعبين؟</p>
+      <h3 class="optional-player" id="spy-optional-player">اسم اللاعب</h3>
+      <div class="btn-grid" id="spy-optional-list"></div>
+      <button class="btn btn-ghost" id="btn-spy-optional-skip">تخطي</button>
+    </div>
+  </section>
+
+  <!-- ===================== SPY OFFLINE: VOTE ===================== -->
+  <section id="screen-spy-vote" class="screen">
+    <header class="app-header">
+      <span class="app-header-title">التخمين</span>
+    </header>
+    <div class="vote-wrap">
+      <p class="vote-question">بمن تشك أنه الجاسوس؟</p>
+      <h3 class="vote-player" id="spy-vote-player">اسم اللاعب</h3>
+      <div class="btn-grid" id="spy-vote-list"></div>
+      <button class="btn btn-primary" id="btn-spy-vote-confirm" disabled>تأكيد</button>
+    </div>
+  </section>
+
+  <!-- ===================== SPY OFFLINE: COUNTDOWN ===================== -->
+  <section id="screen-spy-countdown" class="screen">
+    <div class="countdown-wrap">
+      <h1 class="countdown-number" id="spy-countdown">3</h1>
+    </div>
+  </section>
+
+  <!-- ===================== SPY OFFLINE: SPY REVEAL ===================== -->
+  <section id="screen-spy-spyreveal" class="screen">
+    <div class="spyreveal-wrap">
+      <h2 class="section-title">الجاسوس هو</h2>
+      <h1 class="spy-name" id="spy-names">-</h1>
+      <button class="btn btn-primary" id="btn-spy-spyreveal-next">التالي</button>
+    </div>
+  </section>
+
+  <!-- ===================== SPY OFFLINE: SPY GUESS ===================== -->
+  <section id="screen-spy-guess" class="screen">
+    <header class="app-header">
+      <span class="app-header-title">خمن اللاعب</span>
+    </header>
+    <div class="guess-wrap">
+      <p class="guess-label">الجاسوس: <strong id="spy-guess-player">-</strong></p>
+      <p class="guess-question">اختر اللاعب الذي كان معروفاً للآخرين:</p>
+      <div class="btn-grid" id="spy-guess-list"></div>
+      <button class="btn btn-primary" id="btn-spy-guess-confirm" disabled>تأكيد</button>
+    </div>
+  </section>
+
+  <!-- ===================== POINTS ===================== -->
+  <section id="screen-points" class="screen">
+    <header class="app-header">
+      <span class="app-header-title">النقاط</span>
+    </header>
+    <div class="points-wrap">
+      <ul class="points-list" id="points-list"></ul>
+      <div class="btn-row">
+        <button class="btn btn-primary" id="btn-new-round">دور جديد</button>
+        <button class="btn btn-ghost" id="btn-exit-round">خروج</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FORMATION OFFLINE: SETUP ===================== -->
+  <section id="screen-formation-setup" class="screen">
+    <header class="app-header">
+      <button class="btn-icon" id="btn-formsetup-back">&#8592;</button>
+      <span class="app-header-title">Formation Mode - Offline</span>
+    </header>
+    <div class="setup-wrap">
+      <h2 class="section-title">أسماء اللاعبين</h2>
+      <p class="section-sub">من 2 إلى 4 لاعبين.</p>
+      <div class="row-input">
+        <input id="form-player-input" class="field-input" type="text" placeholder="اسم اللاعب" maxlength="20" autocomplete="off" />
+        <button class="btn btn-primary btn-compact" id="btn-form-add-player">إضافة</button>
+      </div>
+      <ul class="chip-list" id="form-player-list"></ul>
+      <p class="counter" id="form-player-counter">0 / 4</p>
+      <button class="btn btn-primary" id="btn-formsetup-next">التالي</button>
+    </div>
+  </section>
+
+  <!-- ===================== FORMATION OFFLINE: DRAFT ===================== -->
+  <section id="screen-formation-draft" class="screen">
+    <header class="app-header">
+      <span class="app-header-title">Formation Draft</span>
+      <span class="budget-label">Budget: <strong id="form-budget">-</strong></span>
+    </header>
+    <div class="draft-wrap">
+      <div class="player-card">
+        <span class="card-position" id="form-card-position">GK</span>
+        <h3 class="card-name" id="form-card-name">-</h3>
+        <span class="card-ovr" id="form-card-ovr">-</span>
+      </div>
+      <div class="auction-box">
+        <p class="auction-label">السعر المتفق عليه (في الواقع):</p>
+        <input id="form-bid-input" class="field-input" type="number" placeholder="أدخل السعر الفائز" />
+        <p class="auction-label">اختر اللاعب الذي فاز بالمزاد:</p>
+        <div class="btn-grid" id="form-winner-list"></div>
+        <button class="btn btn-primary" id="btn-form-draft-next">التالي</button>
+      </div>
+      <div class="draft-progress" id="form-draft-progress">GK</div>
+    </div>
+  </section>
+
+  <!-- ===================== FORMATION OFFLINE: LINEUP ===================== -->
+  <section id="screen-formation-lineup" class="screen">
+    <header class="app-header">
+      <span class="app-header-title">Your Team</span>
+    </header>
+    <div class="lineup-wrap">
+      <div class="pitch">
+        <div class="pitch-row">
+          <div class="slot" data-pos="st1">ST1</div>
+          <div class="slot" data-pos="st2">ST2</div>
+        </div>
+        <div class="pitch-row">
+          <div class="slot" data-pos="cm1">CM1</div>
+          <div class="slot" data-pos="cm2">CM2</div>
+        </div>
+        <div class="pitch-row">
+          <div class="slot" data-pos="cb1">CB1</div>
+          <div class="slot" data-pos="cb2">CB2</div>
+        </div>
+        <div class="pitch-row">
+          <div class="slot" data-pos="gk">GK</div>
+        </div>
+      </div>
+      <div class="team-summary">
+        <p>Total OVR: <strong id="lineup-ovr">0</strong></p>
+        <p>Remaining: <strong id="lineup-remaining">0</strong></p>
+      </div>
+      <button class="btn btn-primary" id="btn-lineup-next">التالي</button>
+    </div>
+  </section>
+
+  <!-- ===================== FORMATION OFFLINE: RESULT ===================== -->
+  <section id="screen-formation-result" class="screen">
+    <header class="app-header">
+      <span class="app-header-title">النتيجة</span>
+    </header>
+    <div class="result-wrap">
+      <div class="result-teams" id="form-result-teams"></div>
+      <button class="btn btn-primary" id="btn-form-result-next">التالي</button>
+    </div>
+  </section>
+
+  <!-- ===================== GUESS OFFLINE: SETUP ===================== -->
+  <section id="screen-guess-setup" class="screen">
+    <header class="app-header">
+      <button class="btn-icon" id="btn-guesssetup-back">&#8592;</button>
+      <span class="app-header-title">Guess Mode - Offline</span>
+    </header>
+    <div class="setup-wrap">
+      <h2 class="section-title">اسمين فقط</h2>
+      <input id="guess-player-1" class="field-input" type="text" placeholder="اللاعب الأول" maxlength="20" autocomplete="off" />
+      <input id="guess-player-2" class="field-input" type="text" placeholder="اللاعب الثاني" maxlength="20" autocomplete="off" />
+      <button class="btn btn-primary" id="btn-guesssetup-next">التالي</button>
+    </div>
+  </section>
+
+  <!-- ===================== GUESS OFFLINE: PASS ===================== -->
+  <section id="screen-guess-pass" class="screen">
+    <div class="pass-wrap">
+      <p class="pass-label">مرر الهاتف إلى</p>
+      <h1 class="pass-name" id="guess-pass-name">-</h1>
+      <button class="btn btn-primary" id="btn-guess-show">اضغط لمعرفة لاعبك</button>
+    </div>
+  </section>
+
+  <!-- ===================== GUESS OFFLINE: REVEAL ===================== -->
+  <section id="screen-guess-reveal" class="screen">
+    <div class="reveal-wrap">
+      <h2 class="section-title">لاعبك</h2>
+      <div class="scratch-card">
+        <div class="role-content" id="guess-role-content">جاري التحضير...</div>
+        <canvas id="guess-scratch-canvas"></canvas>
+      </div>
+      <button class="btn btn-primary" id="btn-guess-reveal-next" disabled>التالي</button>
+    </div>
+  </section>
+
+  <!-- ===================== GUESS OFFLINE: VOTE ===================== -->
+  <section id="screen-guess-vote" class="screen">
+    <header class="app-header">
+      <span class="app-header-title">من كسب؟</span>
+    </header>
+    <div class="vote-wrap">
+      <div class="btn-grid" id="guess-vote-list"></div>
+      <button class="btn btn-primary" id="btn-guess-vote-confirm" disabled>تأكيد</button>
+    </div>
+  </section>
+
+  <!-- ===================== ONLINE: GATE ===================== -->
+  <section id="screen-online-gate" class="screen">
+    <header class="app-header">
+      <button class="btn-icon" id="btn-onlinegate-back">&#8592;</button>
+      <span class="app-header-title">Online</span>
+    </header>
+    <div class="gate-wrap">
+      <p class="gate-text">تحتاج تسجيل الدخول للعب أونلاين.</p>
+      <button class="btn btn-google" id="btn-online-gate-signin">
+        <span class="google-icon">G</span>
+        <span>Sign in with Google</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- ===================== ONLINE: CHOOSE ===================== -->
+  <section id="screen-online-choose" class="screen">
+    <header class="app-header">
+      <button class="btn-icon" id="btn-onlinechoose-back">&#8592;</button>
+      <span class="app-header-title">Online</span>
+    </header>
+    <div class="mode-list">
+      <button class="mode-card" id="btn-create-room">
+        <span class="mode-icon">&#10133;</span>
+        <span class="mode-title">Create Room</span>
+        <span class="mode-sub">أنشئ غرفة وشارك الكود.</span>
+      </button>
+      <button class="mode-card" id="btn-join-room">
+        <span class="mode-icon">&#128273;</span>
+        <span class="mode-title">Join Room</span>
+        <span class="mode-sub">ادخل بكود الغرفة.</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- ===================== ONLINE: CREATE ROOM ===================== -->
+  <section id="screen-create-room" class="screen">
+    <header class="app-header">
+      <button class="btn-icon" id="btn-createroom-back">&#8592;</button>
+      <span class="app-header-title">Room Settings</span>
+    </header>
+    <div class="settings-wrap">
+      <label class="field-label" for="create-mode">الطور</label>
+      <select id="create-mode" class="field-input">
+        <option value="spy">Spy Mode</option>
+        <option value="formation" disabled>Formation Mode (قريباً)</option>
+        <option value="guess" disabled>Guess Mode (قريباً)</option>
+      </select>
+
+      <label class="field-label" for="create-password">باسورد (اختياري)</label>
+      <input id="create-password" class="field-input" type="text" placeholder="اتركه فارغاً لو مش عايز باسورد" maxlength="12" autocomplete="off" />
+
+      <label class="field-label" for="create-limit">عدد اللاعبين</label>
+      <input id="create-limit" class="field-input" type="number" value="6" min="3" max="12" />
+
+      <button class="btn btn-primary" id="btn-create-room-confirm">إنشاء</button>
+    </div>
+  </section>
+
+  <!-- ===================== ONLINE: JOIN ROOM ===================== -->
+  <section id="screen-join-room" class="screen">
+    <header class="app-header">
+      <button class="btn-icon" id="btn-joinroom-back">&#8592;</button>
+      <span class="app-header-title">Join Room</span>
+    </header>
+    <div class="settings-wrap">
+      <label class="field-label" for="join-code">كود الغرفة</label>
+      <input id="join-code" class="field-input" type="text" placeholder="مثال: 2847" maxlength="4" autocomplete="off" />
+
+      <label class="field-label" for="join-password">باسورد (لو مطلوب)</label>
+      <input id="join-password" class="field-input" type="text" placeholder="كلمة المرور" maxlength="12" autocomplete="off" />
+
+      <button class="btn btn-primary" id="btn-join-room-confirm">دخول</button>
+    </div>
+  </section>
+
+  <!-- ===================== ONLINE: LOBBY ===================== -->
+  <section id="screen-room-lobby" class="screen">
+    <header class="app-header">
+      <button class="btn-icon" id="btn-lobby-menu" aria-label="قائمة">&#9776;</button>
+      <span class="app-header-title">Room #<span id="lobby-room-code">----</span></span>
+      <button class="btn-icon" id="btn-lobby-copy" aria-label="نسخ الكود">&#128203;</button>
+    </header>
+
+    <div class="lobby-wrap">
+      <p class="lobby-count">اللاعبون: <strong id="lobby-count">0/0</strong></p>
+      <ul class="lobby-players" id="lobby-players"></ul>
+      <button class="btn btn-primary" id="btn-lobby-start" disabled>ابدأ</button>
+      <button class="btn btn-ghost" id="btn-lobby-ready">أنا مستعد</button>
+    </div>
+
+    <aside class="sidebar" id="lobby-sidebar">
+      <header class="sidebar-header">
+        <span>شات الغرفة</span>
+        <button class="btn-icon" id="btn-lobby-sidebar-close">&#10005;</button>
+      </header>
+      <div class="sidebar-body" id="lobby-chat-body"></div>
+      <footer class="sidebar-footer">
+        <input id="lobby-chat-input" class="field-input" type="text" placeholder="اكتب رسالة..." autocomplete="off" />
+        <button class="btn btn-primary btn-compact" id="btn-lobby-chat-send">إرسال</button>
+      </footer>
+    </aside>
+  </section>
+
+  <!-- ===================== ONLINE: SPY GAME ===================== -->
+  <section id="screen-spy-online-game" class="screen">
+    <header class="app-header">
+      <span class="app-header-title">Spy Mode</span>
+      <span class="round-info">Round <strong id="spy-online-round">1</strong></span>
+    </header>
+
+    <div class="online-game-wrap">
+      <div class="role-badge" id="spy-online-role">-</div>
+
+      <div class="chat-box" id="spy-online-chat"></div>
+
+      <div class="answer-controls" id="spy-online-answer-controls" style="display:none;">
+        <button class="btn-answer" data-answer="yes">نعم</button>
+        <button class="btn-answer" data-answer="no">لا</button>
+        <button class="btn-answer" data-answer="idk">معرفش</button>
+        <button class="btn btn-primary btn-compact" id="btn-spy-answer-confirm">متأكد</button>
+      </div>
+
+      <div class="ask-controls" id="spy-online-ask-controls" style="display:none;">
+        <input id="spy-online-ask-input" class="field-input" type="text" placeholder="اكتب سؤالك..." autocomplete="off" />
+        <button class="btn btn-primary btn-compact" id="btn-spy-ask-send">إرسال</button>
+      </div>
+
+      <div class="timer" id="spy-online-timer">30</div>
+    </div>
+  </section>
+
+  <!-- ===================== ONLINE: VOTE ===================== -->
+  <section id="screen-spy-online-vote" class="screen">
+    <header class="app-header">
+      <span class="app-header-title">التصويت</span>
+      <span class="timer" id="spy-online-vote-timer">30</span>
+    </header>
+    <div class="vote-wrap">
+      <p class="vote-question">بمن تشك أنه الجاسوس؟</p>
+      <div class="btn-grid" id="spy-online-vote-list"></div>
+      <button class="btn btn-primary" id="btn-spy-online-vote-confirm" disabled>متأكد</button>
+    </div>
+  </section>
+
+  <!-- ===================== ONLINE: SPY GUESS ===================== -->
+  <section id="screen-spy-online-guess" class="screen">
+    <header class="app-header">
+      <span class="app-header-title">تخمين الجاسوس</span>
+      <span class="timer" id="spy-online-guess-timer">15</span>
+    </header>
+    <div class="guess-wrap">
+      <p class="guess-question">اختر لاعب كرة القدم الصحيح:</p>
+      <div class="btn-grid" id="spy-online-guess-list"></div>
+    </div>
+  </section>
+
+  <!-- ===================== RANKINGS ===================== -->
+  <section id="screen-rankings" class="screen">
+    <header class="app-header">
+      <button class="btn-icon" id="btn-rankings-back">&#8592;</button>
+      <span class="app-header-title">Rankings</span>
+    </header>
+    <div class="rankings-wrap">
+      <div class="rank-card">
+        <div class="rank-avatar" id="rank-avatar">A</div>
+        <div class="rank-info">
+          <span class="rank-name" id="rank-username">-</span>
+          <span class="rank-id" id="rank-id">-</span>
+          <span class="rank-level" id="rank-level">Level 1</span>
+        </div>
+      </div>
+
+      <div class="rank-stats">
+        <div class="stat-block"><span class="stat-value" id="stat-wins">0</span><span class="stat-label">Wins</span></div>
+        <div class="stat-block"><span class="stat-value" id="stat-level">1</span><span class="stat-label">Level</span></div>
+        <div class="stat-block"><span class="stat-value" id="stat-friends">0</span><span class="stat-label">Friends</span></div>
+      </div>
+
+      <ul class="rank-actions">
+        <li><button class="btn btn-ghost" id="btn-rank-edit">تعديل البروفايل</button></li>
+        <li><button class="btn btn-ghost" id="btn-rank-settings">الإعدادات</button></li>
+        <li><button class="btn btn-ghost" id="btn-rank-help">مساعدة</button></li>
+        <li><button class="btn btn-ghost" id="btn-rank-logout">تسجيل الخروج</button></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===================== SETTINGS ===================== -->
+  <section id="screen-settings" class="screen">
+    <header class="app-header">
+      <button class="btn-icon" id="btn-settings-back">&#8592;</button>
+      <span class="app-header-title">الإعدادات</span>
+    </header>
+    <ul class="settings-list">
+      <li><button class="btn btn-ghost" id="btn-settings-about">عن اللعبة</button></li>
+      <li><button class="btn btn-ghost" id="btn-settings-guide">شرح اللعبة والأطوار</button></li>
+      <li><button class="btn btn-ghost" id="btn-settings-profile">البروفايل</button></li>
+    </ul>
+  </section>
+
+  <!-- ===================== ABOUT ===================== -->
+  <section id="screen-about" class="screen">
+    <header class="app-header">
+      <button class="btn-icon" id="btn-about-back">&#8592;</button>
+      <span class="app-header-title">عن اللعبة</span>
+    </header>
+    <div class="about-wrap">
+      <h2>Horizon Koragame</h2>
+      <p>لعبة استنتاج اجتماعية بأسماء لاعبي كرة القدم.</p>
+      <p>النسخة الحالية: Beta</p>
+      <p>اللعبة تحت التطوير، وستشمل تحديثات جديدة قريباً.</p>
+    </div>
+  </section>
+
+  <!-- ===================== GUIDE ===================== -->
+  <section id="screen-guide" class="screen">
+    <header class="app-header">
+      <button class="btn-icon" id="btn-guide-back">&#8592;</button>
+      <span class="app-header-title">شرح اللعبة والأطوار</span>
+    </header>
+    <div class="guide-wrap">
+      <h3>Spy Mode</h3>
+      <p>لاعبون بينهم جاسوس. الجميع يعرف اسم لاعب كرة قدم مشترك إلا الجاسوس. اسألوا وخمنوا.</p>
+      <h3>Formation Mode</h3>
+      <p>مزاد على لاعبين لبناء تشكيلة. من يجمع أعلى OVR يفوز.</p>
+      <h3>Guess Mode</h3>
+      <p>لاعب ضد لاعب، كل واحد يعرف لاعبه ومن كسب.</p>
+      <h3>Online</h3>
+      <p>العب مع أصدقائك عبر غرف خاصة بكواد مشاركة.</p>
+    </div>
+  </section>
+
+  <!-- ===================== GLOBAL LOADER ===================== -->
+  <div class="global-loader" id="global-loader">
+    <div class="loader-bar"><div class="loader-fill"></div></div>
+    <p>جاري التحميل...</p>
+  </div>
+
+  <!-- ===================== TOAST ===================== -->
+  <div class="toast" id="toast"></div>
+
+  <script src="app.js" type="module"></script>
+</body>
+</html>
